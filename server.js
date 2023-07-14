@@ -2,6 +2,10 @@ const express = require("express");
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.send("Abdulaziz Programmer");
+});
+
 app.get("*", async (req, res) => {
   const endpoint = "https://restcountries.com/v3.1";
   let response = await fetch(endpoint + req.url.split("?")[0]);
@@ -29,6 +33,8 @@ app.get("*", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
   console.log("Server running on port 3000");
 });
